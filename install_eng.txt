@@ -1,0 +1,21 @@
+﻿Plug-in for integration CMS Open Cart and Best2pay payment processor
+
+It has been tasted on OpenCart 2.3.0.2
+
+Installation:
+
+1. Copy files from the Upload folder and paste into the site root folder directory. Existing files won't be delated.
+
+2. At your Opencart site administration open 'Extensions' - 'Payments'. Click "Install" opposite "Best2Pay (Credit Card / Debit Card)" and "Best2Pay (Electronic money) payment methods. You can use both methods or just one of them.
+
+3. Edit settings of the installed payment methods.
+The value for “Sector ID” and “Password for electronic signature” you will get after registration your Internet store in the Best2pay payment processor.
+Make the value for “Response URL” available to payment processor.
+To do it fill the value in the appropriate field in your account in the Best2pay in format:
+"Your domen+/index.php?route=extension/payment/best2pay/callback" for example http://opencard23.test/index.php?route=extension/payment/best2pay/callback
+
+4. Installation is finished. The “Enabled” methods will be in the list of available payment methods when placing an order.
+
+Notes
+
+- The following currency codes should be set in your store: ruble - 'RUB' , dollar - 'USD', euro - 'EUR'. You can view and edit currency codes at your admin panel in 'System' -> 'Localisation' -> 'Currencies'.
