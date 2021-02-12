@@ -54,7 +54,6 @@ class ControllerExtensionPaymentBest2pay extends Controller {
     }
 
     public function request() {
-        error_reporting(0);
         try {
             $this->language->load('payment/best2pay');
             $this->load->model('checkout/order');
@@ -70,7 +69,6 @@ class ControllerExtensionPaymentBest2pay extends Controller {
             $this->model_checkout_order->addOrderHistory($this->request->get['reference'], 16, 'Best2Pay Fail'); // Voided
             $this->response->redirect($this->url->link('checkout/failure'));
         }
-        error_reporting(1);
     }
 
     private function registerOrder($order_info) {
@@ -100,6 +98,7 @@ class ControllerExtensionPaymentBest2pay extends Controller {
         $signature = base64_encode(md5($this->config->get('best2pay_sector') . intval($amount * 100) . $currency . $this->config->get('best2pay_password')));
 
         $fiscalPositions='';
+        $fiscalAmount = 0;
         $KKT = $this->config->get('best2pay_kkt');
         if ($KKT==1){
             $TAX = (strlen($this->config->get('best2pay_tax')) > 0) ?
@@ -113,12 +112,18 @@ class ControllerExtensionPaymentBest2pay extends Controller {
                     $fiscalPositions.=$elementPrice.';';
                     $fiscalPositions.=$TAX.';';
                     $fiscalPositions.=$product['name'].'|';
+                    $fiscalAmount += $product['quantity'] * $elementPrice;
                 }
                 if ($this->session->data['shipping_method']['cost'] > 0) {
                     $fiscalPositions.='1;';
                     $fiscalPositions.=($this->session->data['shipping_method']['cost']*100).';';
                     $fiscalPositions.=$TAX.';';
                     $fiscalPositions.='shipping'.'|';
+                    $fiscalAmount += $this->session->data['shipping_method']['cost']*100;
+                }
+                $amountDiff = abs(intval($fiscalAmount) - intval($amount * 100));
+                if ($amountDiff > 0) {
+                    $fiscalPositions.='1;'.$amountDiff.';6;coupon;14|';
                 }
                 $fiscalPositions = substr($fiscalPositions, 0, -1);
             }
