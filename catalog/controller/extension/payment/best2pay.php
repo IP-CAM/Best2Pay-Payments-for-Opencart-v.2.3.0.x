@@ -118,7 +118,7 @@ class ControllerExtensionPaymentBest2pay extends Controller {
                     $fiscalPositions.='1;';
                     $fiscalPositions.=($this->session->data['shipping_method']['cost']*100).';';
                     $fiscalPositions.=$TAX.';';
-                    $fiscalPositions.='shipping'.'|';
+                    $fiscalPositions.='Доставка'.'|';
                     $fiscalAmount += $this->session->data['shipping_method']['cost']*100;
                 }
                 $amountDiff = abs(intval($fiscalAmount) - intval($amount * 100));
