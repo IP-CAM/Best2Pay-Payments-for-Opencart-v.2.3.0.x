@@ -6,7 +6,7 @@ Installation:
 
 1. Copy files from the Upload folder and paste into the site root folder directory. Existing files won't be delated.
 
-2. At your Opencart site administration open 'Extensions' - 'Payments'. Click "Install" opposite "Best2Pay (Credit Card / Debit Card)" and "Best2Pay (Electronic money) payment methods. You can use both methods or just one of them.
+2. At your Opencart site administration open 'Extensions' - 'Payments'. Click "Install" opposite "Best2Pay (Credit Card / Debit Card)" payment method. You can use both methods or just one of them.
 
 3. Edit settings of the installed payment methods.
 The value for “Sector ID” and “Password for electronic signature” you will get after registration your Internet store in the Best2pay payment processor.
