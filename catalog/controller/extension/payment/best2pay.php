@@ -259,7 +259,7 @@ class ControllerExtensionPaymentBest2pay extends Controller {
             return false;
 
         // check payment state
-        if (($response->type != 'PURCHASE' && $response->type != 'EPAYMENT') || $response->state != 'APPROVED')
+        if (($response->type != 'PURCHASE_BY_QR' && $response->type != 'PURCHASE' && $response->type != 'AUTHORIZE' && $response->type != 'EPAYMENT') || $response->state != 'APPROVED')
             return false;
 
         // check server signature
